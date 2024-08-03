@@ -41,3 +41,201 @@ Crear una aplicación básica de gestión de bibliotecas. La aplicación debe ma
 **Tarea**:
 - Extender el archivo README con la especificación de cada endpoint y un `curl` que demuestre el uso y un ejemplo del resultado obtenido
 
+
+
+
+# Biblioteca API
+
+## Endpoints
+
+### Libro
+
+- **Crear Libro**
+  - `POST /libros`
+  - Request Body:
+    ```json
+    {
+      "titulo": "Frankenstein",
+      "isbn": "9780520201798"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "id": 10,
+      "titulo": "Frankenstein",
+      "isbn": "9780520201798"
+    }
+    ```
+
+- **Obtener Libro por ID**
+  - `GET /libros/{id}`
+  - Response:
+    ```json
+    {
+      "id": 1,
+      "titulo": "El amor en los tiempos del cólera",
+      "isbn": "9788439735427"
+    }
+    ```
+
+- **Obtener todos los Libros**
+  - `GET /libros`
+  - Response:
+    ```json
+    [
+      {
+        "id": 1,
+        "titulo": "El amor en los tiempos del cólera",
+        "isbn": "9788439735427"
+      },
+      {
+        "id": 2,
+        "titulo": "Cien años de soledad",
+        "isbn": "9780060114183"
+      },
+      {
+        "id": 3,
+        "titulo": "Harry Potter and the Chamber of Secrets",
+        "isbn": "9788869185182"
+      },
+    ]
+    ```
+
+- **Editar Libro**
+  - `PUT /libros/{id}`
+  - Request Body:
+    ```json
+    {
+      "titulo": "Frankenstein",
+      "isbn": "9780520201798"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "id": 1,
+      "titulo": "Frankenstein",
+      "isbn": "9780520201798"
+    }
+    ```
+
+- **Borrar Libro por ID**
+  - `DELETE /libros/{id}`
+  - Response:
+    ```json
+
+    ```
+
+### Autor
+
+- **Crear Autor**
+  - `POST /autores`
+  - Request Body:
+    ```json
+    {
+      "nombre": "Mary Shelley",
+      "nacionalidad": "Británico"
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "id": 6,
+      "nombre": "Mary Shelley",
+      "nacionalidad": "Británico",
+      "libros": []
+    }
+    ```
+
+- **Obtener Autor por ID**
+  - `GET /autores/{id}`
+  - Response:
+    ```json
+    {
+      "id": 1,
+      "nombre": "Gabriel García Márquez",
+      "nacionalidad": "Colombiano",
+      "libros": [
+        {
+          "id": 2,
+          "titulo": "Cien años de soledad",
+          "isbn": "9780060114183"
+        },
+        {
+          "id": 1,
+          "titulo": "El amor en los tiempos del cólera",
+          "isbn": "9788439735427"
+        }
+      ]
+    }
+    ```
+
+- **Obtener todos los Autores**
+  - `GET /autores`
+  - Response:
+    ```json
+    [
+      {
+        "id": 1,
+        "nombre": "Gabriel García Márquez",
+        "nacionalidad": "Colombiano",
+        "libros": [
+          {
+            "id": 2,
+            "titulo": "Cien años de soledad",
+            "isbn": "9780060114183"
+          },
+          {
+            "id": 1,
+            "titulo": "El amor en los tiempos del cólera",
+            "isbn": "9788439735427"
+          }
+        ]
+      },
+    ]
+    ```
+
+- **Editar Autor**
+  - `PUT /autores/{id}`
+  - Request Body:
+    ```json
+    {
+      "nombre": "Mary Shelley",
+      "nacionalidad": "Británico",
+      "libros": [
+        {
+          "id": 10,
+          "titulo": "Frankenstein",
+          "isbn": "9780520201798"
+        }
+      ]
+    }
+    ```
+  - Response:
+    ```json
+    {
+      "nombre": "Mary Shelley",
+      "nacionalidad": "Británico",
+      "libros": [
+        {
+          "id": 10,
+          "titulo": "Frankenstein",
+          "isbn": "9780520201798"
+        }
+      ]
+    }
+    ```
+
+- **Borrar Autor por ID**
+  - `DELETE /autores/{id}`
+  - Response:
+    ```json
+    
+    ```
+
+
+## Ejemplos de uso con `curl`
+
+- Crear un autor:
+  curl -X POST http://localhost:8080/libros -H "Content-Type: application/json" -d '{"titulo": "Frankenstein","isbn": "9780520201798"}'
